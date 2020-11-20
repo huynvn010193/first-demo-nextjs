@@ -1,6 +1,6 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
-// import Image from '../assets/image_02.jpg';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Image from "../assets/image_2.jpg";
 
 export default function Home() {
   return (
@@ -8,17 +8,18 @@ export default function Home() {
       <Head>
         <title>Create Next App Edit</title>
         <link rel="icon" href="/favicon.ico" />
-        <link rel="stylesheet" href="/css/global.css"/>
+        <link rel="stylesheet" href="/css/global.css" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/images/image_01.jpg"/>
+        <img src={Image} />
+        <img src="/images/image_01.jpg" />
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
 
         <p className={styles.description}>
-          Get started by editing{' '}
+          Get started by editing{" "}
           <code className={styles.code}>pages/index.js</code>
         </p>
 
@@ -59,10 +60,10 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
     </div>
-  )
+  );
 }
