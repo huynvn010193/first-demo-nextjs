@@ -30,5 +30,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 - Có 2 loai get router: useRouter and withRouter
-	- useRouter : dùng funciton component.
-	- withRouter: dùng cả 2.
+
+  - useRouter : dùng funciton component.
+  - withRouter: dùng cả 2.
+
+- <Component users={pageProps.user} posts={pageProps.posts} /> === <Component {...pageProps} />
