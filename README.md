@@ -35,3 +35,5 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
   - withRouter: dùng cả 2.
 
 - <Component users={pageProps.user} posts={pageProps.posts} /> === <Component {...pageProps} />
+
+//@ts-ignore => type script không check.
