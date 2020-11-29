@@ -37,3 +37,6 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - <Component users={pageProps.user} posts={pageProps.posts} /> === <Component {...pageProps} />
 
 //@ts-ignore => type script không check.
+
+- UNSAFE_componentWillUpdate: Mọi state thay đổi đều chạy (Phải tự kiểm tra state) => useEffect -> quy định được state nào thay đổi.
+- Lần đầu tiên -> useEffect nào cũng chạy 1 lần. Lần thứ 2 mới dựa vào dependency.

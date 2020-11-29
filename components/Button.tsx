@@ -2,9 +2,9 @@ import { useEffect } from "react"
 
 export default function Button() {
   useEffect(() => {
-    console.log("Render Button");
+    // console.log("Render Button");
     return () => {
-      console.log("Componet Button Will Unmount");
+      // console.log("Componet Button Will Unmount");
     }
   })
   return (
