@@ -1,9 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import Button from '../../../components/Button';
 
 const LifeCycleDemo = () => {
+  console.log("constuctor");
+  
+  // Tương ứng vs Constructor.
+  useMemo(() => {
+    console.log("useMemo <-> constructor");
+  },[]);
   const [counter, setCounter] = useState(0);
   const [visible, setVisible] = useState(true);
+  const [user,setUser] = useState({
+    firstName: 'John',
+    lastName: 'Smith',
+  })
   // useEffect(() => {
   //   console.log("useEffect Run");
   //   return () => {
@@ -32,9 +42,15 @@ const LifeCycleDemo = () => {
     console.log("useEffect - visible-counter");
   },[counter,visible])
 
+  const fullName = useMemo(() => {
+    return user.firstName + '' + user.lastName;
+  },[user]);
+
+  // Tip sử dụng.
+
   return (
     <div className="container">
-      <h1>Play Ground - Life Cycle - React Hooks</h1>
+      <h1>Play Ground - Life Cycle - React Hooks {fullName}</h1>
       <button onClick={() => {
         setCounter(counter + 1)
       }}>Counter Add</button>
