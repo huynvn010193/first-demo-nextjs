@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import Button from '../../../components/Button';
 
 const LifeCycleDemo = () => {
@@ -46,14 +46,14 @@ const LifeCycleDemo = () => {
     return user.firstName + '' + user.lastName;
   },[user]);
 
-  // Tip sử dụng.
+  const handleIncreaseCounter = useCallback(() => {
+    setCounter(counter + 1);
+  },[counter]);
 
   return (
     <div className="container">
       <h1>Play Ground - Life Cycle - React Hooks {fullName}</h1>
-      <button onClick={() => {
-        setCounter(counter + 1)
-      }}>Counter Add</button>
+      <button onClick={handleIncreaseCounter}>Counter Add</button>
       <p>{counter}</p>
       <button onClick={() => {
         setVisible(false)
