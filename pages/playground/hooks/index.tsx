@@ -1,13 +1,32 @@
 import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import Button from '../../../components/Button';
+import useConstructor from "../../../custom-hooks/useConstructor";
 
+let isRun = false;
 const LifeCycleDemo = () => {
-  console.log("constuctor");
-  
-  // Tương ứng vs Constructor.
+  // Các cách tạo constructor
+  // Cách 1:
+  if(isRun === false) {
+    console.log("constructor cách 1");
+    isRun = true;
+  }
+
+  // Cách 2
+  const isRunHook = useRef(false);
+  if(isRunHook.current === false) {
+    console.log("constructor cách 2");
+    isRunHook.current = true;
+  }
+
+  // Cách 3
   useMemo(() => {
-    console.log("useMemo <-> constructor");
+    console.log("constructor cách 3");
   },[]);
+
+  useConstructor(() => {
+    console.log("constructor cách 4");
+  })
+
   const [counter, setCounter] = useState(0);
   const [visible, setVisible] = useState(true);
   const inputFileEl = useRef(null);
@@ -76,7 +95,8 @@ const LifeCycleDemo = () => {
         onClick={() => {
           // inputFileEl.current.click();
           // cach js
-          document.querySelector('input[type="file"').click()
+          const input = document.querySelector('input[type="file"') as HTMLInputElement;
+          input.click();
         }}
       >Upload image</button>
     </div>
