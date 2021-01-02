@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 // import "./modal.scss";
 
 type ModalProps = {
@@ -6,17 +6,23 @@ type ModalProps = {
 };
 
 // Javascript DOM
-
+let CLASS_DEFAULT = "tcl-modal__wrapper";
 const ModalSolution: React.FC<ModalProps> = ({ children, isVisible }) => {
-  let classDefault = "tcl-modal__wrapper";
-  if (isVisible === true) {
-    classDefault += " show";
-    document.querySelector("body").classList.add("tcl-modal__open");
-  } else {
-    document.querySelector("body").classList.remove("tcl-modal__open");
-  }
+  const [className, setClassName] = useState(CLASS_DEFAULT);
+
+  useEffect(() => {
+    if (isVisible === true) {
+      setClassName((oldClass) => oldClass + " show");
+      // setClassName(className + " show"); không nên. => dùng cách này phải truyển className và useEffect.
+      document.querySelector("body").classList.add("tcl-modal__open");
+    } else {
+      setClassName(CLASS_DEFAULT);
+      document.querySelector("body").classList.remove("tcl-modal__open");
+    }
+  }, [isVisible]);
+
   return (
-    <div className={classDefault}>
+    <div className={className}>
       <div className="tcl-mask"></div>
       <div className="tcl-dialog">
         <div className="tcl-modal__content">

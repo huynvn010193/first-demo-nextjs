@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import ModalSolution from "../../components/ModalSolution";
 
-export default function () {
+export default function Soulution() {
   const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className="container">
-      <ModalSolution isVisible={true}>
+      <ModalSolution isVisible={openModal}>
         <h2>Demo Modal</h2>
         <form>
           <input type="text" />
