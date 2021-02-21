@@ -6,20 +6,22 @@ export default function Soulution() {
 
   return (
     <div className="container">
-      <ModalSolution
-        isVisible={openModal}
-        onOK={() => {
-          console.log("Submit form");
-        }}
-        onCancle={() => {
-          setOpenModal(false);
-        }}
-      >
-        <h2>Demo Modal</h2>
-        <form>
-          <input type="text" />
-        </form>
-      </ModalSolution>
+      {
+        openModal && <ModalSolution
+          isVisible={openModal}
+          onOK={() => {
+            console.log("Submit form");
+          }}
+          onCancle={() => {
+            setOpenModal(false);
+          }}
+        >
+          <h2>Demo Modal</h2>
+          <form>
+            <input type="text" />
+          </form>
+        </ModalSolution>
+      }
       <button
         onClick={() => {
           setOpenModal(true);
