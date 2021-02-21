@@ -3,23 +3,47 @@ import React, { useEffect, useRef, useState } from "react";
 
 type ModalProps = {
   isVisible: boolean;
+  onOK?: () => void;
+  onCancle?: () => void;
+  renderFooter?: () => JSX.Element;
 };
 
 // Javascript DOM
 let CLASS_DEFAULT = "tcl-modal__wrapper";
-const ModalSolution: React.FC<ModalProps> = ({ children, isVisible }) => {
+const ModalSolution: React.FC<ModalProps> = ({
+  children,
+  isVisible,
+  onOK,
+  onCancle,
+  renderFooter,
+}) => {
   const [className, setClassName] = useState(CLASS_DEFAULT);
 
   useEffect(() => {
     if (isVisible === true) {
       setClassName((oldClass) => oldClass + " show");
-      // setClassName(className + " show"); không nên. => dùng cách này phải truyển className và useEffect.
+      // setClassName(className + " show"); không nên. => dùng cách này phải truyển className vào useEffect.
       document.querySelector("body").classList.add("tcl-modal__open");
     } else {
       setClassName(CLASS_DEFAULT);
       document.querySelector("body").classList.remove("tcl-modal__open");
     }
   }, [isVisible]);
+
+  const renderDefaultBTN = () => (
+    <>
+      <button className="tcl-modal__cancel" onClick={onCancle}>
+        Cancel
+      </button>
+      <button className="tcl-modal__ok" onClick={onOK}>
+        OK
+      </button>
+    </>
+  );
+
+  const _renderFooter = () => {
+    return renderFooter ? renderFooter() : renderDefaultBTN();
+  };
 
   return (
     <div className={className}>
@@ -31,7 +55,7 @@ const ModalSolution: React.FC<ModalProps> = ({ children, isVisible }) => {
             <button className="tcl-modal__close">X</button>
           </div>
           <div className="tcl-modal__body">{children}</div>
-          <div className="tcl-modal__footer"></div>
+          <div className="tcl-modal__footer">{_renderFooter()}</div>
         </div>
       </div>
     </div>
