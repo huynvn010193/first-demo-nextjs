@@ -16,7 +16,7 @@ type ModalProps = {
 let CLASS_DEFAULT = "tcl-modal__wrapper";
 const ModalSolution: React.FC<ModalProps> = ({
   children,
-  isVisible,
+  isVisible: isVisibleOutside,
   isRenderHeader,
   isRenderCloseIcon,
   btnOkText,
@@ -25,20 +25,8 @@ const ModalSolution: React.FC<ModalProps> = ({
   onCancle,
   renderFooter,
 }) => {
-  console.log("chi");
-
   const [className, setClassName] = useState(CLASS_DEFAULT);
-
-  useEffect(() => {
-    if (isVisible === true) {
-      setClassName((oldClass) => oldClass + " show");
-      // setClassName(className + " show"); không nên. => dùng cách này phải truyển className vào useEffect.
-      document.querySelector("body").classList.add("tcl-modal__open");
-    } else {
-      setClassName(CLASS_DEFAULT);
-      document.querySelector("body").classList.remove("tcl-modal__open");
-    }
-  }, [isVisible]);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     function handler(evt) {
@@ -53,6 +41,29 @@ const ModalSolution: React.FC<ModalProps> = ({
       document.removeEventListener("keyup", handler);
     };
   }, []);
+
+  useEffect(() => {
+    setIsVisible(isVisibleOutside);
+  }, [isVisibleOutside]);
+
+  useEffect(() => {
+    if (isVisible === true) {
+      setClassName((oldClass) => oldClass + " show");
+      // setClassName(className + " show"); không nên. => dùng cách này phải truyển className vào useEffect.
+      document.querySelector("body").classList.add("tcl-modal__open");
+    } else {
+      setClassName(CLASS_DEFAULT);
+      document.querySelector("body").classList.remove("tcl-modal__open");
+    }
+  }, [isVisible]);
+
+  // const onCancle = (): void => {
+  //   if (onCancle) {
+  //     onCancle();
+  //   } else {
+  //     setIsVisible(false);
+  //   }
+  // };
 
   const renderDefaultBTN = () => (
     <>
