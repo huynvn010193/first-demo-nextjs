@@ -3,6 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 
 type ModalProps = {
   isVisible: boolean;
+  isRenderHeader?: boolean;
+  isRenderCloseIcon?: boolean;
+  btnOkText?: string;
+  btnOkCancelText?: string;
   onOK?: () => void;
   onCancle?: () => void;
   renderFooter?: () => JSX.Element;
@@ -13,10 +17,16 @@ let CLASS_DEFAULT = "tcl-modal__wrapper";
 const ModalSolution: React.FC<ModalProps> = ({
   children,
   isVisible,
+  isRenderHeader,
+  isRenderCloseIcon,
+  btnOkText,
+  btnOkCancelText,
   onOK,
   onCancle,
   renderFooter,
 }) => {
+  console.log("chi");
+
   const [className, setClassName] = useState(CLASS_DEFAULT);
 
   useEffect(() => {
@@ -32,9 +42,7 @@ const ModalSolution: React.FC<ModalProps> = ({
 
   useEffect(() => {
     function handler(evt) {
-      console.log("evt",evt);
-      
-      if(evt.which === 27) {
+      if (evt.which === 27) {
         onCancle();
       }
     }
@@ -42,17 +50,17 @@ const ModalSolution: React.FC<ModalProps> = ({
 
     return () => {
       // Component will unmount
-      document.removeEventListener("keyup",handler);
-    }
-  },[])
+      document.removeEventListener("keyup", handler);
+    };
+  }, []);
 
   const renderDefaultBTN = () => (
     <>
       <button className="tcl-modal__cancel" onClick={onCancle}>
-        Cancel
+        {btnOkCancelText}
       </button>
       <button className="tcl-modal__ok" onClick={onOK}>
-        OK
+        {btnOkText}
       </button>
     </>
   );
@@ -61,23 +69,37 @@ const ModalSolution: React.FC<ModalProps> = ({
     return renderFooter ? renderFooter() : renderDefaultBTN();
   };
 
-  if(!isVisible) return null;
+  if (!isVisible) return null;
 
   return (
     <div className={className}>
       <div className="tcl-mask" onClick={onCancle}></div>
       <div className="tcl-dialog">
         <div className="tcl-modal__content">
-          <div className="tcl-modal__header">
-            Title demo
-            <button className="tcl-modal__close" onClick={onCancle}>X</button>
-          </div>
+          {isRenderHeader && (
+            <div className="tcl-modal__header">
+              Title demo
+              {isRenderCloseIcon && (
+                <button className="tcl-modal__close" onClick={onCancle}>
+                  X
+                </button>
+              )}
+            </div>
+          )}
           <div className="tcl-modal__body">{children}</div>
           <div className="tcl-modal__footer">{_renderFooter()}</div>
         </div>
       </div>
     </div>
   );
+};
+
+ModalSolution.defaultProps = {
+  isVisible: false,
+  btnOkText: "OK",
+  btnOkCancelText: "Cancel",
+  isRenderHeader: true,
+  isRenderCloseIcon: true,
 };
 
 export default ModalSolution;
