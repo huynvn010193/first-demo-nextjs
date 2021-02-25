@@ -42,3 +42,12 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 - Lần đầu tiên -> useEffect nào cũng chạy 1 lần. Lần thứ 2 mới dựa vào dependency.
 - useEffect: trả về void. useMemo: nhận vào hàm -> return về hàm.
 - useEffect: chạy ở phía client, useMemo chạy ở client lẫn server.
+
+API là gì ?
+
+- Aplication Programing Interface
+  -> Giao diện lập trình ứng dụng
+  -> Giúp ứng dụng của mình tương tác vs "ứng dụng người dùng khác"
+  => Thư viện bên ngoài..
+  => Hệ thống BE ..
+  => API gửi dữ liệu lên Server -> Và nhận data trả về(dạng URL)
