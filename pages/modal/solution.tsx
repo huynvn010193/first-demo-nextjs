@@ -6,9 +6,12 @@ export default function Soulution() {
 
   return (
     <div className="container">
-      {
-        openModal && <ModalSolution
+      {openModal && (
+        <ModalSolution
           isVisible={openModal}
+          // isRenderHeader={true}
+          // isRenderCloseIcon={true}
+          btnOkText="Submit"
           onOK={() => {
             console.log("Submit form");
           }}
@@ -21,7 +24,7 @@ export default function Soulution() {
             <input type="text" />
           </form>
         </ModalSolution>
-      }
+      )}
       <button
         onClick={() => {
           setOpenModal(true);
