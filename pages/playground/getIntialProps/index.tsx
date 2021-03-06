@@ -1,6 +1,6 @@
-import { type } from "os";
 import React, { useEffect, useState } from "react";
 import { NextPage, NextPageContext } from "next";
+import Link from "next/link";
 
 const BASE_URL = "http://api-meme-zendvn-01.herokuapp.com/api";
 
@@ -28,6 +28,9 @@ const DemoGetIntialProps: NextPage<PropsType> = ({ posts }) => {
   return (
     <div className="container">
       <h1>Demo GetIntialProps</h1>
+      <Link href="/playground/getIntialProps/test">
+        <a>Quay trở lại trang Test</a>
+      </Link>
       <ul>
         {posts.map((posts) => (
           <li key={posts.PID}>{posts.post_content}</li>
