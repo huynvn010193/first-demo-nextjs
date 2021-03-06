@@ -42,7 +42,6 @@ DemoGetIntialProps.getInitialProps = async (context: NextPageContext) => {
     BASE_URL + "/post/getListPagination.php?pagesize=10&currPage=1"
   );
   const data = await response.json();
-  console.log("data", data);
   return {
     posts: data.posts,
   };
