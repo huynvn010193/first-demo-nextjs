@@ -51,3 +51,10 @@ API là gì ?
   => Thư viện bên ngoài..
   => Hệ thống BE ..
   => API gửi dữ liệu lên Server -> Và nhận data trả về(dạng URL)
+
+= GetServerSide: Khi dùng Next/Link
+
+1. getInitialProps: -> trực tiếp gọi sang API của herokuapp
+2. getServerSideProps:
+   -> Gọi API và Server NextJS \*\*\* Bước trung gian này NextJS tự động làm cho mình
+   -> Server NextJS -> Gọi sang API của HerokuAPP -> Che giấu dc API phía herokuAPP
