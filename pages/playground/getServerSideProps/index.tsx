@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { NextPage } from "next";
+import {
+  GetServerSideProps,
+  InferGetServerSidePropsType,
+  NextPage,
+} from "next";
 import Link from "next/link";
 
 const BASE_URL = "http://api-meme-zendvn-01.herokuapp.com/api";
@@ -13,7 +17,11 @@ type PropsType = {
   posts: PostType[];
 };
 
-const DemoGetServerSideProps = ({ posts }) => {
+type PagePropsType = NextPage<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+>;
+
+const DemoGetServerSideProps: PagePropsType = ({ posts }) => {
   // const [posts, setPosts] = useState([]);
   // useEffect(() => {
   //   fetch(BASE_URL + "/post/getListPagination.php?pagesize=10&currPage=1").then(
@@ -44,13 +52,13 @@ DemoGetServerSideProps.defaultProps = {
   posts: [],
 };
 
-export const getServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const response = await fetch(
     BASE_URL + "/post/getListPagination.php?pagesize=10&currPage=1"
   );
   const data = await response.json();
 
-  const props = {
+  const props: PropsType = {
     posts: data.posts,
   };
 
