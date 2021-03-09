@@ -53,13 +53,17 @@ DemoGetServerSideProps.defaultProps = {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const response = await fetch(
-    BASE_URL + "/post/getListPagination.php?pagesize=10&currPage=1"
-  );
-  const data = await response.json();
+  // const response = await fetch(
+  //   BASE_URL + "/post/getListPagination.php?pagesize=10&currPage=1"
+  // );
+  // const data = await response.json();
+
+  // const props: PropsType = {
+  //   posts: data.posts,
+  // };
 
   const props: PropsType = {
-    posts: data.posts,
+    posts: [],
   };
 
   return { props };
