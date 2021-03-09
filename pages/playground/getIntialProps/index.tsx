@@ -13,7 +13,7 @@ type PropsType = {
   posts: PostType[];
 };
 
-const DemoGetIntialProps: NextPage<PropsType> = ({ posts }) => {
+const DemoGetIntialProps: NextPage<PropsType> = ({ posts }: PropsType) => {
   // const [posts, setPosts] = useState([]);
   // useEffect(() => {
   //   fetch(BASE_URL + "/post/getListPagination.php?pagesize=10&currPage=1").then(
