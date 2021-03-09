@@ -45,18 +45,12 @@ DemoGetIntialProps.defaultProps = {
 };
 
 DemoGetIntialProps.getInitialProps = async (context: NextPageContext) => {
-  // const response = await fetch(
-  //   BASE_URL + "/post/getListPagination.php?pagesize=10&currPage=1"
-  // );
-  // const data = await response.json();
-  // return {
-  //   posts: data.posts,
-  // };
-
-  const posts = [];
-
+  const response = await fetch(
+    BASE_URL + "/post/getListPagination.php?pagesize=10&currPage=1"
+  );
+  const data = await response.json();
   return {
-    posts
+    posts: data.posts,
   };
 };
 
