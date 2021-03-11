@@ -1,0 +1,69 @@
+import React, { useEffect, useState } from "react";
+import {
+    GetStaticProps,
+  InferGetStaticPropsType,
+  NextPage,
+} from "next";
+import Link from "next/link";
+
+const BASE_URL = "http://api-meme-zendvn-01.herokuapp.com/api";
+
+type PostType = {
+  PID: string;
+  post_content: string;
+};
+
+type PropsType = {
+  posts: PostType[];
+};
+
+type PagePropsType = React.FC<
+  InferGetStaticPropsType<typeof getStaticProps>>;
+
+const DemoGetStaticProps: PagePropsType = ({ posts }) => {
+  // const [posts, setPosts] = useState([]);
+  // useEffect(() => {
+  //   fetch(BASE_URL + "/post/getListPagination.php?pagesize=10&currPage=1").then(
+  //     async (response) => {
+  //       const data = await response.json();
+  //       console.log("data", data.posts);
+  //       setPosts(data.posts);
+  //     }
+  //   ); // chuyển đổi res về dạng json.
+  // }, []);
+
+  return (
+    <div className="container">
+      <h1>Demo GetStaticProps</h1>
+      <Link href="/playground/getStaticProps/test">
+        <a>Quay trở lại trang Test</a>
+      </Link>
+      <ul>
+        {posts.map((posts) => (
+          <li key={posts.PID}>{posts.post_content}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+DemoGetStaticProps.defaultProps = {
+  posts: [],
+};
+
+export const getStaticProps: GetStaticProps<PropsType> = async (
+  context
+) => {
+  const response = await fetch(
+    BASE_URL + "/post/getListPagination.php?pagesize=10&currPage=1"
+  );
+  const data = await response.json();
+
+  const props = {
+    posts: data.posts,
+  };
+
+  return { props };
+};
+
+export default DemoGetStaticProps;

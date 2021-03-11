@@ -58,3 +58,8 @@ API là gì ?
 2. getServerSideProps:
    -> Gọi API và Server NextJS \*\*\* Bước trung gian này NextJS tự động làm cho mình
    -> Server NextJS -> Gọi sang API của HerokuAPP -> Che giấu dc API phía herokuAPP
+3. Nếu chạy trên môi trường development thì getStaticPorps và getServerSideProps giống nhau khác tên.
+   Khi chạy trên môi trường production mới khác biệt.
+   getStaticProps: gọi API lên server 1 lần duy nhất trong thời điểm build, sau khi build rồi, đưa lên production -> như là 1 static page -> vì dữ liệu đã có sẵn không gọi API lần nữa.
+   _ Ưu điểm: gọi nhanh hơn.
+   _ Nhược: nếu data thay đổi trên server thì ứng dụng không cập nhật lại -> nếu muốn có dữ liệu mới thì phải build lại. -> nhu cầu tạo web tĩnh trong thời gian ngắn hạn.
