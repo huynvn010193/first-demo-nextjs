@@ -63,3 +63,10 @@ API là gì ?
    getStaticProps: gọi API lên server 1 lần duy nhất trong thời điểm build, sau khi build rồi, đưa lên production -> như là 1 static page -> vì dữ liệu đã có sẵn không gọi API lần nữa.
    _ Ưu điểm: gọi nhanh hơn.
    _ Nhược: nếu data thay đổi trên server thì ứng dụng không cập nhật lại -> nếu muốn có dữ liệu mới thì phải build lại. -> nhu cầu tạo web tĩnh trong thời gian ngắn hạn.
+4. getStaticPaths: -> Phải kết hợp đi chung vs getStaticProps.
+   \_ List bài viết
+   -> Trong lần build code -> Biết được API nào được gọi trước (API get list posts)
+   \_ Có những trang dùng Dynamic Routing (đường dẫn động) -> không dùng được getStaticProp
+   -> Ví dụ : trang bài viết chi tiết
+   URL: /post/[id].tsx
+   id = 20 -> gọi id = 20
