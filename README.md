@@ -70,3 +70,14 @@ API là gì ?
    -> Ví dụ : trang bài viết chi tiết
    URL: /post/[id].tsx
    id = 20 -> gọi id = 20
+   Giả sử trên server(Heruko app) có 5 bài viết lần lượt có id = 20, 30, 40, 50 và 60.
+   Dùng thằng getStaticPaths
+   return {
+   paths: [
+   { params: { id: 20 }},
+   { params: { id: 30 }},
+   ],
+   fallback: false(Link dự phòng = false)
+   }
+   -> Nếu User truy cập vào URL khác id 20 và 30 -> không có link dự phòng -> Đây ngay qua 404.
+   -> Nếu khai báo falseback: true.
